@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uma carta para você 💜</title>
+
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffd1dc, #fce1ef, #ffe6f2);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #4b3a6b;
+    margin: 0;
+  }
+
+  .carta {
+    background-color: rgba(255,255,255,0.7);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    width: 90%;
+    margin: 40px auto 70px;
+    max-width: 600px;
+    font-size: 1.2em;
+    line-height: 1.6;
+    white-space: pre-line;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    background-color: #4b3a6b;
+    animation: blink 0.8s infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  button {
+    background-color: #a278ff;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-top: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background-color: #8e6bff;
+    transform: scale(1.05);
+  }
+body {
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+body.fade-in {
+  opacity: 1;
+}
+</style>
+</head>
+
+<body>
+  <div class="carta">
+    <p id="texto"></p>
+    <span class="cursor"></span>
+    <br>
+    <button onclick="window.location.href='presente.html'">Voltar à galeria 💖</button>
+  </div>
+
+  <script>
+    const textoCarta = `
+Oi, minha linda 💜
+
+Nesse dia tão especial para você, gostaria de te lembrar o quanto você é importante pra mim! Quero agradecer por todo esse ano ao seu lado. Por todas as nossas conversas, risadas, choros, zoeiras, conversas profundas, enfim, tudo com você fica melhor!
+
+Cada momento ao seu lado é uma lembrança que eu quero guardar pra sempre! E esse site é só um jeitinho simples de te mostrar o quanto eu te amo, através de várias memórias nossas!
+
+Feliz aniversário, meu bem 💌
+Você é o meu presente todos os dias!
+    `;
+    let i = 0;
+    const elementoTexto = document.getElementById("texto");
+
+    function digitar() {
+      if (i < textoCarta.length) {
+        elementoTexto.innerHTML += textoCarta.charAt(i);
+        i++;
+        setTimeout(digitar, 60); // velocidade da digitação (menor = mais rápido)
+      }
+    }
+
+    window.onload = digitar;
+  </script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("fade-in");
+  });
+  const links = document.querySelectorAll("button, a");
+  links.forEach(link => {
+    link.addEventListener("click", e => {
+      const href = link.getAttribute("onclick") || link.getAttribute("href");
+      if (href && href.includes('.html')) {
+        e.preventDefault();
+        document.body.classList.remove("fade-in");
+        setTimeout(() => {
+          window.location.href = href.replace("window.location.href='", "").replace("'", "");
+        }, 500);
+      }
+    });
+  });
+</script>
+</body>
+</html>

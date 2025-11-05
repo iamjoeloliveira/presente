@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para minha Juju 💜</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffd1dc, #fce1ef, #ffe6f2);
+      background-attachment: fixed;
+      color: #000000;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+
+    body.fade-in {
+      opacity: 1;
+    }
+
+    h1 {
+      margin-top: 40px;
+      color: #000000;
+      font-size: 2.5em;
+      letter-spacing: 1px;
+    }
+
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      padding: 40px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .galeria img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.05);
+    }
+
+    button {
+      margin: 40px;
+      padding: 15px 30px;
+      background: #a278ff;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    button:hover {
+      background: #f0e5ff;
+      transform: scale(1.05);
+    }
+
+    /* corações flutuando */
+    .coracao {
+      position: fixed;
+      bottom: -10px;
+      color: #ff8fd6;
+      font-size: 20px;
+      opacity: 0.8;
+      animation: subir 5s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes subir {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.8);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Feliz Aniversário, meu amor 💜</h1>
+    <p>Essa é uma pequena lembrança dos nossos momentos mais especiais ✨</p>
+  </header>
+
+  <div class="galeria">
+    <img src="foto1.jpg">
+    <img src="foto2.jpg">
+    <img src="foto3.jpg">
+    <img src="foto4.jpg">
+    <img src="foto5.jpg">
+    <img src="foto6.jpg">
+    <img src="foto7.jpg">
+    <img src="foto8.jpg">
+    <img src="foto9.jpg">
+    <img src="foto10.jpg">
+    <img src="foto11.jpg">
+    <img src="foto12.jpeg">
+    <img src="foto13.jpg">
+    <img src="foto14.jpg">
+    <img src="foto15.jpg">
+    <img src="foto16.jpg">
+    <img src="foto17.jpg">
+    <img src="foto18.jpg">
+    <img src="foto19.jpg">
+    <img src="foto20.jpg">
+  </div>
+
+  <button onclick="window.location.href='carta.html'">
+    Ler minha carta 💌
+  </button>
+
+  <script>
+    // efeito de entrada suave
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("fade-in");
+    });
+
+    // transição entre páginas
+    const btn = document.querySelector("button");
+    btn.addEventListener("click", e => {
+      e.preventDefault();
+      document.body.classList.remove("fade-in");
+      setTimeout(() => {
+        window.location.href = "carta.html";
+      }, 500);
+    });
+
+    // corações flutuando
+    function criarCoracao() {
+      const coracao = document.createElement("div");
+      coracao.classList.add("coracao");
+      coracao.innerText = "💜";
+      coracao.style.left = Math.random() * 100 + "vw";
+      coracao.style.fontSize = (Math.random() * 20 + 15) + "px";
+      document.body.appendChild(coracao);
+      setTimeout(() => coracao.remove(), 5000);
+    }
+    const coracoes = setInterval(criarCoracao, 700);
+    setTimeout(() => clearInterval(coracoes), 5000);
+  </script>
+</body>
+</html>
